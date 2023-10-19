@@ -40,14 +40,14 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex padding={2} marginBottom={1}>
+        <Flex display="flex" alignItems="center" padding={2} marginBottom={1}>
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) =>
               setGameQuery({ ...gameQuery, platform })
             }
           />
-          <Box marginLeft={5}>
+          <Box marginLeft={3}>
             <SortSelector
               sortOrder={gameQuery.sortOrder}
               onSelectSortOrder={(sortOrder) =>
