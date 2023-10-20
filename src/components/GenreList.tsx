@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -19,30 +20,40 @@ const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
-    <List marginTop={1.5}>
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY="4px">
-          <HStack>
-            <Image
-              boxSize="33px"
-              borderRadius={7}
-              src={getCroppedImageUrl(genre.image_background)}
-            />
-            <Button
-              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-              colorScheme={genre.id === selectedGenre?.id ? "yellow" : "white"}
-              onClick={() => {
-                onSelectedGenre(genre);
-              }}
-              variant="link"
-              fontSize="16.5px"
-            >
-              {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading fontSize="26px" marginBottom={2}>
+        Genres
+      </Heading>
+      <List marginTop={1.5}>
+        {data.map((genre) => (
+          <ListItem key={genre.id} paddingY="4px">
+            <HStack>
+              <Image
+                boxSize="33px"
+                borderRadius={7}
+                src={getCroppedImageUrl(genre.image_background)}
+                objectFit="cover"
+              />
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                colorScheme={
+                  genre.id === selectedGenre?.id ? "yellow" : "white"
+                }
+                onClick={() => {
+                  onSelectedGenre(genre);
+                }}
+                variant="link"
+                fontSize="16.5px"
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 };
 
